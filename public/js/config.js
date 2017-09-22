@@ -5,12 +5,11 @@ require.config({
     baseUrl :'/public/assets',
     paths:{
         jquery :'jquery/jquery',
-        template:'artTemplate/template',
-
         cookie:'jquery-cookie/jquery.cookie',
-        common:'common',
-        login:'login',
-        teacherlist:'teacher-list'
+        template : 'artTemplate/template-web',
+        common:'../js/common',
+        login:'../js/login',
+        teacherlist:'../js/teacher-list'
     }
 
 })

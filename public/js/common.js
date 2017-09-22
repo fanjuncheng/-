@@ -32,6 +32,6 @@ define(['jquery','cookie'], function ($) {
 	loginInfo=loginInfo&&JSON.parse(loginInfo);
 	//$('.aside .profile img').attr('src',loginInfo.tc_avatar);
 	//$('.aside .profile h4').html(loginInfo.tc_name);
-	console.log(loginInfo)
+
 
 });
