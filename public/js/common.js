@@ -31,7 +31,7 @@ define(['jquery','cookie'], function ($) {
 	var loginInfo = $.cookie('loginInfo');
 	loginInfo=loginInfo&&JSON.parse(loginInfo);
 	//$('.aside .profile img').attr('src',loginInfo.tc_avatar);
-	//$('.aside .profile h4').html(loginInfo.tc_name);
+	//$('.aside .profile h4')add.html(loginInfo.tc_name);
 
 
 });
