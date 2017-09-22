@@ -15,7 +15,8 @@ var tcId = util.qs('tc_id');
                 var html=template('teacherTpl',data.result);
                 $('#teacherInfo').html(html);
 
-                console.log(html);
+                //处理表单提交
+                submitForm('/api/teacher/updata');
             }
 
         });
@@ -23,5 +24,23 @@ var tcId = util.qs('tc_id');
         //添加
         var html = template('teacherTpl',{operate:'添加讲师'});
         $('#teacherInfo').html(html);
+        submitForm('/api/teacher/add');
+    }
+    //实现表单提交
+    function submitForm(url){
+        $('#teacherBtn').click(function () {
+            $.ajax({
+                type:'post',
+                url:url,
+                data:$('#teacherForm').serialize(),
+                dataType:'json',
+                success: function (data) {
+                    if(data.code==200){
+                        location.href='/teacher/list';
+                    }
+                }
+            });
+
+        });
     }
 });
