@@ -28,7 +28,7 @@ define(['jquery','template','uploadify'], function ($, template) {
                 var obj = JSON.parse(b);
                     $('.preview img').attr('src',obj.result.path);
 
-                    
+
                 }
 
             });
