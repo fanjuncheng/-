@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/9/24.
  */
-define(['jquery','template','ckeditor','uploadify','region','datepicker','language'], function ($, template,CKEDITOR) {
+define(['jquery','template','ckeditor','uploadify','region','datepicker','language','validate','form'], function ($, template,CKEDITOR) {
 
     $.ajax({
         type:'get',
@@ -24,10 +24,7 @@ define(['jquery','template','ckeditor','uploadify','region','datepicker','langua
                 onUploadSuccess: function (a,b) {
                 var obj = JSON.parse(b);
                     $('.preview img').attr('src',obj.result.path);
-
-
                 }
-
             });
 
             //三级联动
@@ -42,7 +39,35 @@ define(['jquery','template','ckeditor','uploadify','region','datepicker','langua
                     {name:'editing',groups:['find','selection','spellchecker',
                     'editing']}
                 ]
-            })
+            });
+            //处理表单提交
+            $('#settingsForm').validate({
+                sendForm:false,
+                valid: function () {
+                    var p=$('#p').find('option:selected').text();
+                    var c=$('#c').find('option:selected').text();
+                    var d=$('#d').find('option:selected').text();
+                    var hometown= p + '|' + c + '|' + d;
+                    //同步富文本内容
+                    for(var instance in CKEDITOR.instances){
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+                    //提交表单
+                    $(this).ajaxSubmit({
+                        type:'post',
+                        url:'/api/teacher/modify',
+                        data:{tc_hometown:hometown},
+                        dataType:'json',
+                        success: function (data) {
+                            if(data.code===200){
+                                location.reload();
+                            }
+
+                        }
+                    });
+
+                }
+            });
         }
     });
 });
