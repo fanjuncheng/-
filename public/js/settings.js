@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/9/24.
  */
-define(['jquery','template','uploadify','region'], function ($, template) {
+define(['jquery','template','ckeditor','uploadify','region','datepicker','language'], function ($, template,CKEDITOR) {
 
     $.ajax({
         type:'get',
@@ -10,9 +10,6 @@ define(['jquery','template','uploadify','region'], function ($, template) {
         success: function (data) {
             var html = template('settingsTpl',data.result);
             $('#settingsInfo').html(html);
-
-
-
 
             //处理头像上传
 
@@ -37,6 +34,15 @@ define(['jquery','template','uploadify','region'], function ($, template) {
             $('#pcd').region({
                 url:'/public/assets/jquery-region/region.json'
             });
+
+            //处理富文本
+            CKEDITOR.replace('editor',{
+                toolbarGroups:[
+                    {name:'clipboard',groups:['clipbard','undo']},
+                    {name:'editing',groups:['find','selection','spellchecker',
+                    'editing']}
+                ]
+            })
         }
     });
 });
