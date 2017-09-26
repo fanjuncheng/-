@@ -1,8 +1,10 @@
 /**
  * Created by Administrator on 2017/9/21.
  */
-define(['jquery','template','bootstrap'], function ($,template) {
-
+define(['jquery','template','util','bootstrap'], function ($,template,util) {
+    //导航菜单
+       util.setMenu(location.pathname);
+       //
     $.ajax({
         type:'get',
         url:'/api/teacher',
